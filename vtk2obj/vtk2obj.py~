@@ -108,7 +108,7 @@ def batch(path):
 					
 					
 		print len(points[-1])
-		f = open(l[:-4] +'.obj', 'w')
+		f = open('out.obj', 'w')
 		for each in points:
 			if len(each) == 0:
 				continue
