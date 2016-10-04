@@ -2,6 +2,7 @@ import glob # can get list of files in directory
 import subprocess # can call terminal commands
 import sys
 import math
+import os
 
 MESHLAB_SCRIPT = 'deciAndSmooth.mlx' # Name of original meshlab script
 TEMP_SCRIPT = 'newScript.mlx' # Name of temporary meshlab script file to write
@@ -23,8 +24,15 @@ if not baseDir.endswith('/'):
 	baseDir += '/'
 if not outputDir.endswith('/'):
 	outputDir += '/'
+   
+f = []
+for (paths, dirs, files) in os.walk(baseDir):
+    for x in files:
+        if x.endswith(".obj"):
+            f.append(os.path.join(paths, x))
 
-files = glob.glob(baseDir + '*.obj')
+    
+files = f#glob.glob(baseDir + '*.obj')
 command = 'meshlabserver -s ' + TEMP_SCRIPT + ' -i %s -o ' + outputDir + '%s'
 
 with open(MESHLAB_SCRIPT) as script:
